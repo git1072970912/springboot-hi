@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/gyf?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+  profiles:
+    active: test
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  mvc:
+    #设置对输入参数的格式化，这样后台的接口就可以接收Date类型
+    date-format: yyyy-MM-dd
+  jackson:
+    #设置对输出参数的格式化
+    date-format: yyyy-MM-dd
+    #北京时间相对伦敦有8个小时时差所以使用GMT+8，这样才能正常显示日期
+    time-zone: GMT+8
+  thymeleaf:
+    cache: false
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--将此html设置为thymeleaf模板-->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板引擎Thymeleaf</title>
+</head>
+<body>
+<!--获取后端数据以及字符串拼接-->
+欢迎:<span th:text="${name}"></span><br/>
+欢迎:<span th:text="超级VIP+${name}"></span><br/>
+欢迎:<span th:text="|超级VIP,${name}|"></span><br/>
+<!--取反-->
+<span th:unless="${age<18}" th:text="你老了"></span><br/>
+<!--三元运算符-->
+<span th:text="${age<18?'未成年':'你老了'}"></span><br>
+<!--日期格式化-->
+<input th:value="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"/>
+<!--循环遍历以及条件判断-->
+<table>
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+    </tr>
+    <tr th:each="user:${userList}" th:if="${user.id>1}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.password}"></td>
+    </tr>
+</table>
+</body>
+</html>
